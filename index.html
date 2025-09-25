@@ -1,282 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link
-    rel="icon"
-    href="resources/favicon.ico"
-    type="image/x-icon"
-    sizes="96x96"
-  />
+    <link
+      rel="icon"
+      href="resources/favicon.ico"
+      type="image/x-icon"
+      sizes="96x96"
+    />
 
-  <title>Guess The Word Game | devChallenges.io</title>
+    <title>Guess The Word Game | devChallenges.io</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
 
-    body {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: url("resources/bg-guess-the-word.jpg") no-repeat center center/cover;
-      flex-direction: column;
-    }
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url("resources/bg-guess-the-word.jpg") no-repeat center
+          center/cover;
+        flex-direction: column;
+      }
 
-    .game-container {
-      background: #1a1a2e;
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      width: 350px;
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
+      .game-container {
+        background: #1a1a2e;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        width: 350px;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
 
-    .logo {
-      width: 150px;
-      margin: 0 auto 20px;
-      display: block;
-    }
+      .logo {
+        width: 150px;
+        margin: 0 auto 20px;
+        display: block;
+      }
 
-    h2 {
-      font-size: 20px;
-      margin-bottom: 20px;
-      color: #a855f7;
-    }
+      h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #a855f7;
+      }
 
-    .scramble-box {
-      background: #333;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 22px;
-      letter-spacing: 10px;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
+      .scramble-box {
+        background: #333;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 22px;
+        letter-spacing: 10px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+      }
 
-    .status {
-      font-size: 14px;
-      margin: 10px 0 20px;
-    }
+      .status {
+        font-size: 14px;
+        margin: 10px 0 20px;
+      }
 
-    .status span {
-      font-weight: bold;
-    }
+      .status span {
+        font-weight: bold;
+      }
 
-    
-    #dots {
-      display: inline-flex;
-      gap: 4px;
-    }
-    #dots span {
-      font-size: 18px;
-      color: black; 
-      transition: color 0.3s;
-    }
-    #dots span.filled {
-      color: #a855f7;
-    }
+      #dots {
+        display: inline-flex;
+        gap: 4px;
+      }
+      #dots span {
+        font-size: 18px;
+        color: black;
+        transition: color 0.3s;
+      }
+      #dots span.filled {
+        color: #a855f7;
+      }
 
-    .letters {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
+      .letters {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
 
-    .letters input {
-      width: 40px;
-      height: 40px;
-      border: 2px solid #555;
-      border-radius: 6px;
-      text-align: center;
-      font-size: 18px;
-      background: #111;
-      color: white;
-    }
+      .letters input {
+        width: 40px;
+        height: 40px;
+        border: 2px solid #555;
+        border-radius: 6px;
+        text-align: center;
+        font-size: 18px;
+        background: #111;
+        color: white;
+      }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
 
-    .buttons button {
-      background: #a855f7;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background 0.3s;
-    }
+      .buttons button {
+        background: #a855f7;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.3s;
+      }
 
-    .buttons button:hover {
-      background: #9333ea;
-    }
+      .buttons button:hover {
+        background: #9333ea;
+      }
 
-    .author-info {
-      font-size: 14px;
-      text-align: center;
-      margin-top: 16px;
-      color: rgb(55, 65, 81);
-    }
+      .author-info {
+        font-size: 14px;
+        text-align: center;
+        margin-top: 16px;
+        color: rgb(55, 65, 81);
+      }
 
-    .author-info a {
-      text-decoration: none;
-      color: #a855f7;
-    }
-  </style>
-</head>
-<body>
-  <div class="game-container">
-    <img src="resources/word-scramblle-logo.svg" alt="Game Logo" class="logo" />
-    <h2>Word Scramblle</h2>
+      .author-info a {
+        text-decoration: none;
+        color: #a855f7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-container">
+      <img
+        src="resources/word-scramblle-logo.svg"
+        alt="Game Logo"
+        class="logo"
+      />
+      <h2>Word Scramblle</h2>
 
-    <div class="scramble-box" id="scramble">------</div>
+      <div class="scramble-box" id="scramble">------</div>
 
-    <div class="status">
-      Tries (<span id="typedCount">0</span>/<span id="totalCount">0</span>): 
-      <span id="dots"></span> &nbsp;&nbsp;
-      Mistakes: <span id="mistakes">-</span>
+      <div class="status">
+        Tries (<span id="typedCount">0</span>/<span id="totalCount">0</span>):
+        <span id="dots"></span> &nbsp;&nbsp; Mistakes:
+        <span id="mistakes">-</span>
+      </div>
+
+      <div class="letters" id="letterInputs"></div>
+
+      <div class="buttons">
+        <button onclick="newGame()">Random</button>
+        <button onclick="resetGame()">Reset</button>
+      </div>
     </div>
 
-    <div class="letters" id="letterInputs"></div>
-
-    <div class="buttons">
-      <button onclick="newGame()">Random</button>
-      <button onclick="resetGame()">Reset</button>
+    <div class="author-info">
+      Coded by <a href="#">Abdul Ahad</a> | Challenge by
+      <a href="https://www.devchallenges.io?ref=challenge" target="_blank"
+        >devChallenges.io</a
+      >.
     </div>
-  </div>
 
-  <div class="author-info">
-    Coded by <a href="#">Your Name Here</a> | Challenge by
-    <a href="https://www.devchallenges.io?ref=challenge" target="_blank"
-      >devChallenges.io</a
-    >.
-  </div>
+    <script>
+      const words = [
+        "flower",
+        "planet",
+        "school",
+        "purple",
+        "dream",
+        "coding",
+        "river",
+        "ocean",
+      ];
+      let chosenWord = "";
+      let scrambled = "";
+      let mistakes = [];
+      let tries = 0;
 
- <script>
-  const words = ["flower", "planet", "school", "purple", "dream", "coding", "river", "ocean"];
-  let chosenWord = "";
-  let scrambled = "";
-  let mistakes = [];
-  let tries = 0;
+      const scrambleBox = document.getElementById("scramble");
+      const typedCountEl = document.getElementById("typedCount");
+      const totalCountEl = document.getElementById("totalCount");
+      const dotsEl = document.getElementById("dots");
+      const mistakesEl = document.getElementById("mistakes");
+      const letterInputs = document.getElementById("letterInputs");
 
-  const scrambleBox = document.getElementById("scramble");
-  const typedCountEl = document.getElementById("typedCount");
-  const totalCountEl = document.getElementById("totalCount");
-  const dotsEl = document.getElementById("dots");
-  const mistakesEl = document.getElementById("mistakes");
-  const letterInputs = document.getElementById("letterInputs");
+      function shuffle(word) {
+        return word
+          .split("")
+          .sort(() => Math.random() - 0.5)
+          .join("");
+      }
 
-  function shuffle(word) {
-    return word.split("").sort(() => Math.random() - 0.5).join("");
-  }
+      function newGame() {
+        chosenWord = words[Math.floor(Math.random() * words.length)];
+        scrambled = shuffle(chosenWord);
+        while (scrambled === chosenWord) {
+          scrambled = shuffle(chosenWord);
+        }
 
-  function newGame() {
-    chosenWord = words[Math.floor(Math.random() * words.length)];
-    scrambled = shuffle(chosenWord);
-    while (scrambled === chosenWord) {
-      scrambled = shuffle(chosenWord);
-    }
+        scrambleBox.textContent = scrambled.split("").join(" ");
+        mistakes = [];
+        tries = 0;
 
-    scrambleBox.textContent = scrambled.split("").join(" ");
-    mistakes = [];
-    tries = 0;
+        totalCountEl.textContent = chosenWord.length;
+        typedCountEl.textContent = 0;
 
-    totalCountEl.textContent = chosenWord.length;
-    typedCountEl.textContent = 0;
+        dotsEl.innerHTML = "";
+        for (let i = 0; i < chosenWord.length; i++) {
+          let dot = document.createElement("span");
+          dot.textContent = "•";
+          dotsEl.appendChild(dot);
+        }
 
-    dotsEl.innerHTML = "";
-    for (let i = 0; i < chosenWord.length; i++) {
-      let dot = document.createElement("span");
-      dot.textContent = "•";
-      dotsEl.appendChild(dot);
-    }
+        letterInputs.innerHTML = "";
+        for (let i = 0; i < chosenWord.length; i++) {
+          let input = document.createElement("input");
+          input.maxLength = 1;
+          input.dataset.index = i;
 
-    letterInputs.innerHTML = "";
-    for (let i = 0; i < chosenWord.length; i++) {
-      let input = document.createElement("input");
-      input.maxLength = 1;
-      input.dataset.index = i;
+          input.addEventListener("input", function () {
+            updateDots();
+            if (input.value && input.nextElementSibling) {
+              input.nextElementSibling.focus();
+            }
+            checkWord();
+          });
 
-      input.addEventListener("input", function () {
+          input.addEventListener("keydown", function (e) {
+            if (e.key === "Backspace" && !input.value && i > 0) {
+              letterInputs.children[i - 1].focus();
+            }
+          });
+
+          letterInputs.appendChild(input);
+        }
+
+        letterInputs.children[0].focus();
         updateDots();
-        if (input.value && input.nextElementSibling) {
-          input.nextElementSibling.focus();
-        }
-        checkWord();
-      });
-
-      input.addEventListener("keydown", function (e) {
-        if (e.key === "Backspace" && !input.value && i > 0) {
-          letterInputs.children[i - 1].focus();
-        }
-      });
-
-      letterInputs.appendChild(input);
-    }
-
-    letterInputs.children[0].focus();
-    updateDots();
-    updateMistakes();
-  }
-
-  function resetGame() {
-    tries = 0;
-    typedCountEl.textContent = 0;
-    [...letterInputs.children].forEach((input) => (input.value = ""));
-    updateDots();
-    updateMistakes();
-  }
-
-  function updateDots() {
-    let filled = [...letterInputs.children].filter(inp => inp.value).length;
-    typedCountEl.textContent = filled;
-
-    [...dotsEl.children].forEach((dot, index) => {
-      if (index < filled) {
-        dot.classList.add("filled");
-      } else {
-        dot.classList.remove("filled");
+        updateMistakes();
       }
-    });
-  }
 
-  function updateMistakes() {
-    mistakesEl.textContent = mistakes.length ? mistakes.join(", ") : "-";
-  }
-
-  function checkWord() {
-    let attempt = [...letterInputs.children].map((inp) => inp.value).join("");
-    if (attempt.length === chosenWord.length) {
-      tries++;
-      if (attempt.toLowerCase() === chosenWord) {
-        alert("🎉 Correct! The word was " + chosenWord);
-        newGame();
-      } else {
-        mistakes.push(attempt); 
-        updateMistakes();       
-        resetGame();            
+      function resetGame() {
+        tries = 0;
+        typedCountEl.textContent = 0;
+        [...letterInputs.children].forEach((input) => (input.value = ""));
+        updateDots();
+        updateMistakes();
       }
-    }
-  }
 
+      function updateDots() {
+        let filled = [...letterInputs.children].filter(
+          (inp) => inp.value
+        ).length;
+        typedCountEl.textContent = filled;
 
-  newGame();
-</script>
+        [...dotsEl.children].forEach((dot, index) => {
+          if (index < filled) {
+            dot.classList.add("filled");
+          } else {
+            dot.classList.remove("filled");
+          }
+        });
+      }
 
+      function updateMistakes() {
+        mistakesEl.textContent = mistakes.length ? mistakes.join(", ") : "-";
+      }
 
-</body>
+      function checkWord() {
+        let attempt = [...letterInputs.children]
+          .map((inp) => inp.value)
+          .join("");
+        if (attempt.length === chosenWord.length) {
+          tries++;
+          if (attempt.toLowerCase() === chosenWord) {
+            alert("🎉 Correct! The word was " + chosenWord);
+            newGame();
+          } else {
+            mistakes.push(attempt);
+            updateMistakes();
+            resetGame();
+          }
+        }
+      }
+
+      newGame();
+    </script>
+  </body>
 </html>
